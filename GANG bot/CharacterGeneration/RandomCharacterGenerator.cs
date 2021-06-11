@@ -64,28 +64,11 @@ namespace GANG_bot.CharacterGeneration
 
         private int GenerateStat()
         {
-            int stat = 0;
             Random rand = new Random();
 
-            int firstRoll = rand.Next(1, 6);
-            int secondRoll = rand.Next(1, 6);
-            int thirdRoll = rand.Next(1, 6);
-            int fourthRoll = rand.Next(1, 6);
+            var rolls = Enumerable.Repeat(0,3).Select(i =>rand.Next(1,6)).ToList();
 
-            List<int> rolls = new List<int>();
-            rolls.Add(firstRoll);
-            rolls.Add(secondRoll);
-            rolls.Add(thirdRoll);
-            rolls.Add(fourthRoll);
-
-            rolls = rolls.OrderBy(r => r).Take(3).ToList();
-
-            foreach (var roll in rolls)
-            {
-                stat += roll;
-            }
-
-            return stat;
+            return rolls.OrderBy(r => r).Take(3).Sum();
         }
     
     }
