@@ -54,12 +54,38 @@ namespace GANG_bot.CharacterGeneration
             this.characterClass = classes[random.Next(0, classes.Length - 1)];
             this.characterRace = races[random.Next(0, races.Length - 1)];
 
-            this.strengthAbil = random.Next(1, 6) + random.Next(1, 6) + random.Next(1, 6);
-            this.dexterityAbil = random.Next(1, 6) + random.Next(1, 6) + random.Next(1, 6);
-            this.constitutionAbil = random.Next(1, 6) + random.Next(1, 6) + random.Next(1, 6);
-            this.intelligenceAbil = random.Next(1, 6) + random.Next(1, 6) + random.Next(1, 6);
-            this.wisdomAbil = random.Next(1, 6) + random.Next(1, 6) + random.Next(1, 6);
-            this.charismaAbil = random.Next(1, 6) + random.Next(1, 6) + random.Next(1, 6);
+            this.strengthAbil = GenerateStat();
+            this.dexterityAbil = GenerateStat();
+            this.constitutionAbil = GenerateStat();
+            this.intelligenceAbil = GenerateStat();
+            this.wisdomAbil = GenerateStat();
+            this.charismaAbil = GenerateStat();
+        }
+
+        private int GenerateStat()
+        {
+            int stat = 0;
+            Random rand = new Random();
+
+            int firstRoll = rand.Next(1, 6);
+            int secondRoll = rand.Next(1, 6);
+            int thirdRoll = rand.Next(1, 6);
+            int fourthRoll = rand.Next(1, 6);
+
+            List<int> rolls = new List<int>();
+            rolls.Add(firstRoll);
+            rolls.Add(secondRoll);
+            rolls.Add(thirdRoll);
+            rolls.Add(fourthRoll);
+
+            rolls = rolls.OrderBy(r => r).Take(3).ToList();
+
+            foreach (var roll in rolls)
+            {
+                stat += roll;
+            }
+
+            return stat;
         }
     
     }

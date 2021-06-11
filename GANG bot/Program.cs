@@ -17,7 +17,7 @@ namespace GANG_bot
         static void Main(string[] args) => new Program().MainAsync().GetAwaiter().GetResult();
 
         private DiscordSocketClient _client;
-        private const string PREFIX = "?";
+        private string PREFIX;
         private CommandHandlerClass commandHandlerClass;
         public async Task MainAsync()
         {
@@ -29,7 +29,9 @@ namespace GANG_bot
 
             var secret = JsonConvert.DeserializeObject<Secret>(File.ReadAllText("config.json"));
 
-            await _client.LoginAsync(TokenType.Bot, token);
+            PREFIX = secret.Prefix;
+
+            await _client.LoginAsync(TokenType.Bot, secret.Token);
             await _client.StartAsync();
 
             await Task.Delay(-1);
