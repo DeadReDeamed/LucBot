@@ -139,6 +139,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CharacterGeneration\Races\Elf.cs" />
+    <Compile Include="CharacterGeneration\Races\Humanoid.cs" />
     <Compile Include="CharacterGeneration\RandomCharacterGenerator.cs" />
     <Compile Include="CommandHandlerClass.cs" />
     <Compile Include="Program.cs" />

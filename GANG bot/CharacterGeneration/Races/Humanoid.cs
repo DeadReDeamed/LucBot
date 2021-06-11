@@ -8,6 +8,17 @@ namespace GANG_bot.CharacterGeneration.Races
 {
     class Stats
     {
+        public override string ToString()
+        {
+            return $@"str: {Strength}
+dex: {Dexterity}
+cons: {Constitution}
+int: {Intelligence}
+wis: {Wisdom}
+char: {Charisma}
+";
+        }
+
         public int Strength { get; set; }
         public int Dexterity { get; set; }
         public int Constitution { get; set; }
@@ -20,16 +31,41 @@ namespace GANG_bot.CharacterGeneration.Races
 
         }
 
+        public static Stats operator +(Stats a, Stats b)
+        => new Stats() 
+        {
+            Strength = a.Strength + b.Strength,
+            Dexterity = a.Dexterity + b.Dexterity,
+            Constitution = a.Constitution + b.Constitution,
+            Intelligence = a.Intelligence + b.Intelligence,
+            Wisdom = a.Wisdom + b.Wisdom,
+            Charisma = a.Charisma + b.Charisma
+        };
+
     }
 
     abstract class Humanoid
     {
         public abstract Stats bonusStats { get; }
-        public Stats stats { get; private set; }
+        public Stats baseStats { get; private set; }
+
+        public virtual Stats Stats { get => baseStats + bonusStats; }
 
         public Humanoid(Stats stats)
         {
-            this.stats = stats;
+            this.baseStats = stats;
         }
+
+        public override string ToString()
+        {
+            return Stats.ToString();
+        }
+
+        public Humanoid()
+        {
+
+        }
+
+        public abstract string RaceName { get; }
     }
 }

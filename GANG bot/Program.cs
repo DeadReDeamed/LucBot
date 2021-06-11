@@ -4,6 +4,7 @@ using System;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.IO;
+using GANG_bot.CharacterGeneration.Races;
 
 namespace GANG_bot
 {
@@ -36,6 +37,11 @@ namespace GANG_bot
 
             await Task.Delay(-1);
 
+        }
+
+        private void RandomCharacterGenerator()
+        {
+            throw new NotImplementedException();
         }
 
         private Task Log(LogMessage msg)
