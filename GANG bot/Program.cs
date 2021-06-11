@@ -2,9 +2,16 @@
 using Discord.WebSocket;
 using System;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace GANG_bot
 {
+    class Secret {
+        
+        public string Token { get; set; }
+        public string Prefix { get;  set; }
+    }
     class Program
     {
         static void Main(string[] args) => new Program().MainAsync().GetAwaiter().GetResult();
@@ -12,15 +19,15 @@ namespace GANG_bot
         private DiscordSocketClient _client;
         private const string PREFIX = "?";
         private CommandHandlerClass commandHandlerClass;
-
         public async Task MainAsync()
         {
            commandHandlerClass = new CommandHandlerClass();
+
             _client = new DiscordSocketClient();
             _client.MessageReceived += CommandHandler;
             _client.Log += Log;
 
-            var token = "ODUyMjgwMzU0MzM3NTg3MjEw.YMEh7w.AnMDG-SYLhiGIsY-MBzc7RxgWH8";
+            var secret = JsonConvert.DeserializeObject<Secret>(File.ReadAllText("config.json"));
 
             await _client.LoginAsync(TokenType.Bot, token);
             await _client.StartAsync();
