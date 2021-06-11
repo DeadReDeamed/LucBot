@@ -12,9 +12,7 @@ namespace GANG_bot.CharacterGeneration
 
     class RandomCharacterGenerator
     {
-        private static List<string> races = (from type in Assembly.GetExecutingAssembly().GetTypes()
-                                             where type.IsSubclassOf(typeof(Humanoid))
-                                             select type.GetProperties().First(p => p.Name == "RaceName").GetValue(Activator.CreateInstance(type))).Select(p => (string)p).ToList();
+        private static List<Type> races = Assembly.GetExecutingAssembly().GetTypes().Where(type => type.IsSubclassOf(typeof(Humanoid))).ToList();
         private string[] classes =
         {
             "Barbarian",
@@ -39,8 +37,8 @@ namespace GANG_bot.CharacterGeneration
         public int charismaAbil { get; private set; }
 
         public string characterClass { get; private set; }
-        public string characterRace { get; private set; }
-        public static List<string> Races { get => races; set => races = value; }
+        public Humanoid characterRace { get; private set; }
+        public static List<Type> Races { get => races; set => races = value; }
 
         public Random _rand;
 
@@ -48,24 +46,11 @@ namespace GANG_bot.CharacterGeneration
         {
             _rand = new Random();
             this.characterClass = classes[_rand.Next(0, classes.Length - 1)];
-            this.characterRace = Races[_rand.Next(0, Races.Count() - 1)];
+            this.characterRace = (Humanoid) Activator.CreateInstance(Races[_rand.Next(0, Races.Count() - 1)]);
 
-            this.strengthAbil = GenerateStat();
-            this.dexterityAbil = GenerateStat();
-            this.constitutionAbil = GenerateStat();
-            this.intelligenceAbil = GenerateStat();
-            this.wisdomAbil = GenerateStat();
-            this.charismaAbil = GenerateStat();
+            this.characterRace.BaseStats = Stats.GenerateBaseStats();
         }
 
-        private int GenerateStat()
-        { 
-            
-            var rolls = Enumerable.Repeat(0,3).Select(i =>_rand.Next(1,6)).ToList();
-
-            return rolls.OrderBy(r => r).Take(3).Sum();
-
-        }
-    
+        
     }
 }

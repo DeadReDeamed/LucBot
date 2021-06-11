@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GANG_bot.CharacterGeneration.Races
 {
@@ -26,13 +23,15 @@ char: {Charisma}
         public int Wisdom { get; set; }
         public int Charisma { get; set; }
 
+        public Random _rand;
+
         public Stats()
         {
-
+            _rand = new Random();
         }
 
         public static Stats operator +(Stats a, Stats b)
-        => new Stats() 
+        => new Stats()
         {
             Strength = a.Strength + b.Strength,
             Dexterity = a.Dexterity + b.Dexterity,
@@ -42,23 +41,54 @@ char: {Charisma}
             Charisma = a.Charisma + b.Charisma
         };
 
+        public static Stats GenerateBaseStats()
+        {
+            Random _rand = new Random();
+            Func<int> GenerateStat = () =>
+            {
+               
+                var rolls = Enumerable.Repeat(0, 3).Select(i => _rand.Next(1, 6)).ToList();
+
+                return rolls.OrderBy(r => r).Take(3).Sum();
+            };
+
+            return new Stats()
+            {
+                Strength = GenerateStat(),
+                Dexterity = GenerateStat(),
+                Constitution = GenerateStat(),
+                Intelligence = GenerateStat(),
+                Wisdom = GenerateStat(),
+                Charisma = GenerateStat(),
+            };
+        }
+
+        private int GenerateStat()
+        {
+
+            var rolls = Enumerable.Repeat(0, 3).Select(i => _rand.Next(1, 6)).ToList();
+
+            return rolls.OrderBy(r => r).Take(3).Sum();
+
+        }
+
     }
 
     abstract class Humanoid
     {
-        public abstract Stats bonusStats { get; }
-        public Stats baseStats { get; private set; }
+        public abstract Stats BonusStats { get; }
+        public Stats BaseStats { get; set; }
 
-        public virtual Stats Stats { get => baseStats + bonusStats; }
+        public virtual Stats Stats { get => BaseStats + BonusStats; }
 
         public Humanoid(Stats stats)
         {
-            this.baseStats = stats;
+            this.BaseStats = stats;
         }
 
         public override string ToString()
         {
-            return Stats.ToString();
+            return RaceName;
         }
 
         public Humanoid()

@@ -8,7 +8,7 @@ namespace GANG_bot.CharacterGeneration.Races
 {
     class Elf : Humanoid
     {
-        public override Stats bonusStats { get => new Stats() { Dexterity = 2 };}
+        public override Stats BonusStats { get => new Stats() { Dexterity = 2 };}
 
         public override string RaceName => "Elf";
 
@@ -21,11 +21,12 @@ namespace GANG_bot.CharacterGeneration.Races
         {
 
         }
+
     }
 
     class Human : Humanoid
     {
-        public override Stats bonusStats { get => new Stats() {Strength = 1, Dexterity = 1, Charisma = 1, Constitution = 1, Intelligence = 1, Wisdom = 1};}
+        public override Stats BonusStats { get => new Stats() {Strength = 1, Dexterity = 1, Charisma = 1, Constitution = 1, Intelligence = 1, Wisdom = 1};}
 
         public override string RaceName => "Human";
 
@@ -42,7 +43,7 @@ namespace GANG_bot.CharacterGeneration.Races
 
     class Dragonborn : Humanoid
     {
-        public override Stats bonusStats { get => new Stats() { Strength = 2, Charisma = 1 }; }
+        public override Stats BonusStats { get => new Stats() { Strength = 2, Charisma = 1 }; }
 
         public override string RaceName => "Dragonborn";
 
@@ -59,7 +60,7 @@ namespace GANG_bot.CharacterGeneration.Races
 
     class Dwarf : Humanoid
     {
-        public override Stats bonusStats { get => new Stats() { Constitution = 2 }; }
+        public override Stats BonusStats { get => new Stats() { Constitution = 2 }; }
 
         public override string RaceName => "Dwarf";
 
@@ -76,7 +77,7 @@ namespace GANG_bot.CharacterGeneration.Races
 
     class Gnome : Humanoid
     {
-        public override Stats bonusStats { get => new Stats() { Intelligence = 2 }; }
+        public override Stats BonusStats { get => new Stats() { Intelligence = 2 }; }
 
         public override string RaceName => "Gnome";
 
@@ -93,7 +94,7 @@ namespace GANG_bot.CharacterGeneration.Races
 
     class Goliath : Humanoid
     {
-        public override Stats bonusStats { get => new Stats() { Strength = 2, Constitution = 1 }; }
+        public override Stats BonusStats { get => new Stats() { Strength = 2, Constitution = 1 }; }
 
         public override string RaceName => "Goliath";
 
@@ -110,7 +111,7 @@ namespace GANG_bot.CharacterGeneration.Races
 
     class HalfElf : Humanoid
     {
-        public override Stats bonusStats { get => new Stats() { Charisma = 2, Intelligence = 1, Dexterity = 1 }; }
+        public override Stats BonusStats { get => new Stats() { Charisma = 2, Intelligence = 1, Dexterity = 1 }; }
 
         public override string RaceName => "Half-elf";
 
@@ -127,7 +128,7 @@ namespace GANG_bot.CharacterGeneration.Races
 
     class HalfOrc : Humanoid
     {
-        public override Stats bonusStats { get => new Stats() { Strength = 2, Constitution = 1}; }
+        public override Stats BonusStats { get => new Stats() { Strength = 2, Constitution = 1}; }
 
         public override string RaceName => "Half-orc";
 
@@ -144,7 +145,7 @@ namespace GANG_bot.CharacterGeneration.Races
 
     class Halfling : Humanoid
     {
-        public override Stats bonusStats { get => new Stats() { Dexterity = 2 }; }
+        public override Stats BonusStats { get => new Stats() { Dexterity = 2 }; }
 
         public override string RaceName => "Halfling";
 
@@ -161,7 +162,7 @@ namespace GANG_bot.CharacterGeneration.Races
 
     class Tabaxi : Humanoid
     {
-        public override Stats bonusStats { get => new Stats() { Dexterity = 2, Charisma = 1 }; }
+        public override Stats BonusStats { get => new Stats() { Dexterity = 2, Charisma = 1 }; }
 
         public override string RaceName => "Tabaxi";
 
@@ -178,7 +179,7 @@ namespace GANG_bot.CharacterGeneration.Races
 
     class Tiefling : Humanoid
     {
-        public override Stats bonusStats { get => new Stats() { Charisma = 2, Intelligence = 1 }; }
+        public override Stats BonusStats { get => new Stats() { Charisma = 2, Intelligence = 1 }; }
 
         public override string RaceName => "Tiefling";
 

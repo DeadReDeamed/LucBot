@@ -27,12 +27,7 @@ namespace GANG_bot
                        "Race : " + randomCharacterGenerator.characterRace + Environment.NewLine + 
                        "Class : " + randomCharacterGenerator.characterClass + Environment.NewLine +
                        "-- Ability Scores --" + Environment.NewLine +
-                       "Strength : " + randomCharacterGenerator.strengthAbil + Environment.NewLine +
-                       "Dexterity : " + randomCharacterGenerator.dexterityAbil + Environment.NewLine +
-                       "Constitution : " + randomCharacterGenerator.constitutionAbil + Environment.NewLine +
-                       "Intelligence : " + randomCharacterGenerator.intelligenceAbil + Environment.NewLine + 
-                       "Wisdom : " + randomCharacterGenerator.wisdomAbil + Environment.NewLine + 
-                       "Charisma : " + randomCharacterGenerator.charismaAbil);
+                       randomCharacterGenerator.characterRace.Stats.ToString());
                 }
             }
         }
