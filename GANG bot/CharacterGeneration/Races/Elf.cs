@@ -193,4 +193,21 @@ namespace GANG_bot.CharacterGeneration.Races
 
         }
     }
+
+    class Aasimar : Humanoid
+    {
+        public override Stats BonusStats { get => new Stats() { Charisma = 2 }; }
+
+        public override string RaceName => "Aasimar";
+
+        public Aasimar(Stats stats) : base(stats)
+        {
+
+        }
+
+        public Aasimar() : base()
+        {
+
+        }
+    }
 }

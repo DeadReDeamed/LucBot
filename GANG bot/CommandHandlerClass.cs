@@ -22,13 +22,36 @@ namespace GANG_bot
             } else if (commands[0].ToLower().Equals("generate")){
                 if (commands[1].ToLower().Equals("character"))
                 {
-                    RandomCharacterGenerator randomCharacterGenerator = new RandomCharacterGenerator();
-                   message.Channel.SendMessageAsync("Name : " + message.Author.Mention + Environment.NewLine + 
-                       "Race : " + randomCharacterGenerator.characterRace + Environment.NewLine + 
-                       "Class : " + randomCharacterGenerator.characterClass + Environment.NewLine +
-                       "-- Ability Scores --" + Environment.NewLine +
-                       randomCharacterGenerator.characterRace.Stats.ToString());
-                }
+                    if (commands.Length < 3)
+                    {
+                        RandomCharacterGenerator randomCharacterGenerator = new RandomCharacterGenerator();
+
+                        message.Channel.SendMessageAsync("Name : " + message.Author.Mention + Environment.NewLine +
+                            "Race : " + randomCharacterGenerator.characterRace + Environment.NewLine +
+                            "Class : " + randomCharacterGenerator.characterClass + Environment.NewLine +
+                            "-- Ability Scores --" + Environment.NewLine +
+                            randomCharacterGenerator.characterRace.Stats.ToString());
+                    } else if (RandomCharacterGenerator.doesRaceExist(commands[2]) || RandomCharacterGenerator.doesClassExist(commands[2])){
+                        if (commands.Length == 3) 
+                        {
+                            RandomCharacterGenerator generator = new RandomCharacterGenerator(commands[2]);
+
+                            message.Channel.SendMessageAsync("Name : " + message.Author.Mention + Environment.NewLine +
+                            "Race : " + generator.characterRace + Environment.NewLine +
+                            "Class : " + generator.characterClass + Environment.NewLine +
+                            "-- Ability Scores --" + Environment.NewLine +
+                            generator.characterRace.Stats.ToString());
+                        } else if(commands.Length == 4)
+                        {
+                            RandomCharacterGenerator generator = new RandomCharacterGenerator(commands[2], commands[3]);
+                            message.Channel.SendMessageAsync("Name : " + message.Author.Mention + Environment.NewLine +
+                            "Race : " + generator.characterRace + Environment.NewLine +
+                            "Class : " + generator.characterClass + Environment.NewLine +
+                            "-- Ability Scores --" + Environment.NewLine +
+                            generator.characterRace.Stats.ToString());
+                        }
+                    }
+                } 
             }
         }
     }
