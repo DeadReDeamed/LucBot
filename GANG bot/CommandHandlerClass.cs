@@ -41,7 +41,7 @@ namespace GANG_bot
                             "Class : " + generator.characterClass + Environment.NewLine +
                             "-- Ability Scores --" + Environment.NewLine +
                             generator.characterRace.Stats.ToString());
-                        } else if(commands.Length == 4)
+                        } else if(commands.Length == 4 && RandomCharacterGenerator.doesRaceExist(commands[2]) && RandomCharacterGenerator.doesClassExist(commands[3]))
                         {
                             RandomCharacterGenerator generator = new RandomCharacterGenerator(commands[2], commands[3]);
                             message.Channel.SendMessageAsync("Name : " + message.Author.Mention + Environment.NewLine +
