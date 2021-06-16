@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace GANG_bot.CharacterGeneration.Races
 {
+    [Serializable()]
     class Elf : Humanoid
     {
         public override Stats BonusStats { get => new Stats() { Dexterity = 2 };}
@@ -24,6 +25,7 @@ namespace GANG_bot.CharacterGeneration.Races
 
     }
 
+    [Serializable()]
     class Human : Humanoid
     {
         public override Stats BonusStats { get => new Stats() {Strength = 1, Dexterity = 1, Charisma = 1, Constitution = 1, Intelligence = 1, Wisdom = 1};}
@@ -41,6 +43,7 @@ namespace GANG_bot.CharacterGeneration.Races
         }
     }
 
+    [Serializable()]
     class Dragonborn : Humanoid
     {
         public override Stats BonusStats { get => new Stats() { Strength = 2, Charisma = 1 }; }
@@ -58,6 +61,7 @@ namespace GANG_bot.CharacterGeneration.Races
         }
     }
 
+    [Serializable()]
     class Dwarf : Humanoid
     {
         public override Stats BonusStats { get => new Stats() { Constitution = 2 }; }
@@ -69,12 +73,14 @@ namespace GANG_bot.CharacterGeneration.Races
               
         }
 
+
         public Dwarf() : base()
         {
 
         }
     }
 
+    [Serializable()]
     class Gnome : Humanoid
     {
         public override Stats BonusStats { get => new Stats() { Intelligence = 2 }; }
@@ -92,6 +98,7 @@ namespace GANG_bot.CharacterGeneration.Races
         }
     }
 
+    [Serializable()]
     class Goliath : Humanoid
     {
         public override Stats BonusStats { get => new Stats() { Strength = 2, Constitution = 1 }; }
@@ -109,6 +116,7 @@ namespace GANG_bot.CharacterGeneration.Races
         }
     }
 
+    [Serializable()]
     class HalfElf : Humanoid
     {
         public override Stats BonusStats { get => new Stats() { Charisma = 2, Intelligence = 1, Dexterity = 1 }; }
@@ -126,6 +134,7 @@ namespace GANG_bot.CharacterGeneration.Races
         }
     }
 
+    [Serializable()]
     class HalfOrc : Humanoid
     {
         public override Stats BonusStats { get => new Stats() { Strength = 2, Constitution = 1}; }
@@ -143,6 +152,7 @@ namespace GANG_bot.CharacterGeneration.Races
         }
     }
 
+    [Serializable()]
     class Halfling : Humanoid
     {
         public override Stats BonusStats { get => new Stats() { Dexterity = 2 }; }
@@ -160,6 +170,7 @@ namespace GANG_bot.CharacterGeneration.Races
         }
     }
 
+    [Serializable()]
     class Tabaxi : Humanoid
     {
         public override Stats BonusStats { get => new Stats() { Dexterity = 2, Charisma = 1 }; }
@@ -177,6 +188,7 @@ namespace GANG_bot.CharacterGeneration.Races
         }
     }
 
+    [Serializable()]
     class Tiefling : Humanoid
     {
         public override Stats BonusStats { get => new Stats() { Charisma = 2, Intelligence = 1 }; }
@@ -194,6 +206,7 @@ namespace GANG_bot.CharacterGeneration.Races
         }
     }
 
+    [Serializable()]
     class Aasimar : Humanoid
     {
         public override Stats BonusStats { get => new Stats() { Charisma = 2 }; }
@@ -206,6 +219,24 @@ namespace GANG_bot.CharacterGeneration.Races
         }
 
         public Aasimar() : base()
+        {
+
+        }
+    }
+
+    [Serializable()]
+    class Goblin : Humanoid
+    {
+        public override Stats BonusStats { get => new Stats() { Dexterity = 2, Constitution = 1 }; }
+
+        public override string RaceName => "Goblin";
+
+        public Goblin(Stats stats) : base(stats)
+        {
+
+        }
+
+        public Goblin() : base()
         {
 
         }

@@ -30,7 +30,7 @@ namespace GANG_bot
                             "Race : " + randomCharacterGenerator.characterRace + Environment.NewLine +
                             "Class : " + randomCharacterGenerator.characterClass + Environment.NewLine +
                             "-- Ability Scores --" + Environment.NewLine +
-                            randomCharacterGenerator.characterRace.Stats.ToString());
+                            randomCharacterGenerator.pc.Stats.ToString());
                     } else if (RandomCharacterGenerator.doesRaceExist(commands[2]) || RandomCharacterGenerator.doesClassExist(commands[2])){
                         if (commands.Length == 3) 
                         {
@@ -40,7 +40,7 @@ namespace GANG_bot
                             "Race : " + generator.characterRace + Environment.NewLine +
                             "Class : " + generator.characterClass + Environment.NewLine +
                             "-- Ability Scores --" + Environment.NewLine +
-                            generator.characterRace.Stats.ToString());
+                            generator.pc.Stats.ToString());
                         } else if(commands.Length == 4 && RandomCharacterGenerator.doesRaceExist(commands[2]) && RandomCharacterGenerator.doesClassExist(commands[3]))
                         {
                             RandomCharacterGenerator generator = new RandomCharacterGenerator(commands[2], commands[3]);
@@ -48,7 +48,7 @@ namespace GANG_bot
                             "Race : " + generator.characterRace + Environment.NewLine +
                             "Class : " + generator.characterClass + Environment.NewLine +
                             "-- Ability Scores --" + Environment.NewLine +
-                            generator.characterRace.Stats.ToString());
+                            generator.pc.Stats.ToString());
                         }
                     }
                 } 

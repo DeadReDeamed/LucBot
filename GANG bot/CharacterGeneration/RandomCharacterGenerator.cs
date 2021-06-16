@@ -32,6 +32,7 @@ namespace GANG_bot.CharacterGeneration
         private static string[] racesStrings =
         {
             "elf",
+            "goblin",
             "dwarf",
             "dragonborn",
             "gnome",
@@ -52,6 +53,8 @@ namespace GANG_bot.CharacterGeneration
         public Humanoid characterRace { get; private set; }
         public static List<Type> Races { get => races; set => races = value; }
 
+        public PlayerCharacter pc;
+
         public Random _rand;
 
         public RandomCharacterGenerator()
@@ -59,8 +62,8 @@ namespace GANG_bot.CharacterGeneration
             _rand = new Random();
             this.characterClass = classes[_rand.Next(0, classes.Length - 1)];
             this.characterRace = (Humanoid) Activator.CreateInstance(Races[_rand.Next(0, Races.Count() - 1)]);
-
-            this.characterRace.BaseStats = Stats.GenerateBaseStats();
+            pc = new PlayerCharacter(characterRace, characterClass, new Stats());
+            pc.BaseStats.GenerateBaseStats();
         }
 
         public RandomCharacterGenerator(string input)
@@ -73,15 +76,18 @@ namespace GANG_bot.CharacterGeneration
                 this.characterClass = classes[_rand.Next(0, classes.Length - 1)];
                 this.characterRace = (Humanoid)Activator.CreateInstance(races.Find(p => p.Name.ToLower().Contains(input)));
 
-                this.characterRace.BaseStats = Stats.GenerateBaseStats();
+                
+
             } else if (doesClassExist(input))
             {
                 _rand = new Random();
                 this.characterClass = input.First<char>().ToString().ToUpper() + input.Substring(1);
                 this.characterRace = (Humanoid)Activator.CreateInstance(Races[_rand.Next(0, Races.Count() - 1)]);
 
-                this.characterRace.BaseStats = Stats.GenerateBaseStats();
             }
+
+            pc = new PlayerCharacter(characterRace, characterClass, new Stats());
+            pc.BaseStats.GenerateBaseStats();
         }
 
         public RandomCharacterGenerator(string race, string clas)
@@ -91,8 +97,10 @@ namespace GANG_bot.CharacterGeneration
 
             this.characterClass = clas.First<char>().ToString().ToUpper() + clas.Substring(1);
             this.characterRace = (Humanoid)Activator.CreateInstance(races.Find(p => p.Name.ToLower().Contains(race)));
+            
+            pc = new PlayerCharacter(characterRace, characterClass, new Stats());
+            pc.BaseStats.GenerateBaseStats();
 
-            this.characterRace.BaseStats = Stats.GenerateBaseStats();
         }
 
         public static Boolean doesRaceExist(string race)
@@ -117,7 +125,7 @@ namespace GANG_bot.CharacterGeneration
             }
             return false;
         }
-
-        
     }
+
+    
 }
